@@ -29,6 +29,9 @@
 				"material1": {
 					"pos": [0, 300]
 				},
+				"box1": {
+					"pos": [0, 100]
+				},
 				"MAT": {
 					"pos": [-200, 300],
 					"nodes": {
@@ -62,9 +65,6 @@
 							}
 						}
 					}
-				},
-				"box1": {
-					"pos": [0, 100]
 				}
 			}
 		},
@@ -111,6 +111,28 @@
 					"pos": [0, 150],
 					"nodes": {
 						"cameraOrbitControls1": {
+							"pos": [0, 0]
+						}
+					}
+				},
+				"cameraPostProcess1": {
+					"pos": [0, 450],
+					"nodes": {
+						"OUT": {
+							"pos": [-150, 150]
+						},
+						"ascii1": {
+							"pos": [-250, -50]
+						},
+						"ascii2": {
+							"pos": [-50, -50]
+						}
+					}
+				},
+				"cameraRenderer1": {
+					"pos": [0, 250],
+					"nodes": {
+						"WebGLRenderer1": {
 							"pos": [0, 0]
 						}
 					}

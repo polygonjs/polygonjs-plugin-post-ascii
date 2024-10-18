@@ -7,7 +7,6 @@ export async function loadSceneAndMount_scene_01(options) {
     domElement,
     autoPlay: true,
     onProgress,
-    moduleImportSuffix: ".js",
     sceneDataRoot: publicPath + "/polygonjs/scenes",
     assetsRoot: publicPath,
     libsRootPrefix: publicPath,

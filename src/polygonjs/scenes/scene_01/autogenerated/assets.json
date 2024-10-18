@@ -1,4 +1,1 @@
-[
-	"https://raw.githubusercontent.com/polygonjs/polygonjs-assets/master/textures/piz_compressed.exr",
-	"https://raw.githubusercontent.com/polygonjs/polygonjs-assets/master/textures/uv.jpg"
-]
+["textures/piz_compressed.exr", "textures/uv.jpg"]

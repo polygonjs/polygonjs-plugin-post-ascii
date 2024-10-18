@@ -1,7 +1,7 @@
 #define STANDARD
 #ifdef PHYSICAL
 	#define IOR
-	#define SPECULAR
+	#define USE_SPECULAR
 #endif
 uniform vec3 diffuse;
 uniform vec3 emissive;
@@ -11,14 +11,14 @@ uniform float opacity;
 #ifdef IOR
 	uniform float ior;
 #endif
-#ifdef SPECULAR
+#ifdef USE_SPECULAR
 	uniform float specularIntensity;
 	uniform vec3 specularColor;
-	#ifdef USE_SPECULARINTENSITYMAP
-		uniform sampler2D specularIntensityMap;
-	#endif
-	#ifdef USE_SPECULARCOLORMAP
+	#ifdef USE_SPECULAR_COLORMAP
 		uniform sampler2D specularColorMap;
+	#endif
+	#ifdef USE_SPECULAR_INTENSITYMAP
+		uniform sampler2D specularIntensityMap;
 	#endif
 #endif
 #ifdef USE_CLEARCOAT
@@ -34,11 +34,17 @@ uniform float opacity;
 #ifdef USE_SHEEN
 	uniform vec3 sheenColor;
 	uniform float sheenRoughness;
-	#ifdef USE_SHEENCOLORMAP
+	#ifdef USE_SHEEN_COLORMAP
 		uniform sampler2D sheenColorMap;
 	#endif
-	#ifdef USE_SHEENROUGHNESSMAP
+	#ifdef USE_SHEEN_ROUGHNESSMAP
 		uniform sampler2D sheenRoughnessMap;
+	#endif
+#endif
+#ifdef USE_ANISOTROPY
+	uniform vec2 anisotropyVector;
+	#ifdef USE_ANISOTROPYMAP
+		uniform sampler2D anisotropyMap;
 	#endif
 #endif
 varying vec3 vViewPosition;
@@ -79,14 +85,13 @@ varying vec3 v_POLY_globals1_position;
 #include <dithering_pars_fragment>
 #include <color_pars_fragment>
 #include <uv_pars_fragment>
-#include <uv2_pars_fragment>
 #include <map_pars_fragment>
 #include <alphamap_pars_fragment>
 #include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
 #include <aomap_pars_fragment>
 #include <lightmap_pars_fragment>
 #include <emissivemap_pars_fragment>
-#include <bsdfs>
 #include <iridescence_fragment>
 #include <cube_uv_reflection_fragment>
 #include <envmap_common_pars_fragment>
@@ -118,12 +123,13 @@ struct SSSModel {
 
 void RE_Direct_Scattering(
 	const in IncidentLight directLight,
-	const in GeometricContext geometry,
+	const in vec3 geometryNormal,
+	const in vec3 geometryViewDir,
 	const in SSSModel sssModel,
 	inout ReflectedLight reflectedLight
 	){
-	vec3 scatteringHalf = normalize(directLight.direction + (geometry.normal * sssModel.distortion));
-	float scatteringDot = pow(saturate(dot(geometry.viewDir, -scatteringHalf)), sssModel.power) * sssModel.scale;
+	vec3 scatteringHalf = normalize(directLight.direction + (geometryNormal * sssModel.distortion));
+	float scatteringDot = pow(saturate(dot(geometryViewDir, -scatteringHalf)), sssModel.power) * sssModel.scale;
 	vec3 scatteringIllu = (scatteringDot + sssModel.ambient) * (sssModel.color * (1.0-sssModel.thickness));
 	reflectedLight.directDiffuse += scatteringIllu * sssModel.attenuation * directLight.color;
 }
@@ -170,6 +176,7 @@ void main() {
 	#include <color_fragment>
 	#include <alphamap_fragment>
 	#include <alphatest_fragment>
+	#include <alphahash_fragment>
 	float roughnessFactor = roughness * POLY_roughness;
 
 #ifdef USE_ROUGHNESSMAP
@@ -200,7 +207,7 @@ void main() {
 	#include <lights_physical_fragment>
 	#include <lights_fragment_begin>
 if(POLY_SSSModel.isActive){
-	RE_Direct_Scattering(directLight, geometry, POLY_SSSModel, reflectedLight);
+	RE_Direct_Scattering(directLight, geometryNormal, geometryViewDir, POLY_SSSModel, reflectedLight);
 }
 
 
@@ -213,16 +220,16 @@ if(POLY_SSSModel.isActive){
 	vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;
 	#ifdef USE_SHEEN
 		float sheenEnergyComp = 1.0 - 0.157 * max3( material.sheenColor );
-		outgoingLight = outgoingLight * sheenEnergyComp + sheenSpecular;
+		outgoingLight = outgoingLight * sheenEnergyComp + sheenSpecularDirect + sheenSpecularIndirect;
 	#endif
 	#ifdef USE_CLEARCOAT
-		float dotNVcc = saturate( dot( geometry.clearcoatNormal, geometry.viewDir ) );
+		float dotNVcc = saturate( dot( geometryClearcoatNormal, geometryViewDir ) );
 		vec3 Fcc = F_Schlick( material.clearcoatF0, material.clearcoatF90, dotNVcc );
-		outgoingLight = outgoingLight * ( 1.0 - material.clearcoat * Fcc ) + clearcoatSpecular * material.clearcoat;
+		outgoingLight = outgoingLight * ( 1.0 - material.clearcoat * Fcc ) + ( clearcoatSpecularDirect + clearcoatSpecularIndirect ) * material.clearcoat;
 	#endif
-	#include <output_fragment>
+	#include <opaque_fragment>
 	#include <tonemapping_fragment>
-	#include <encodings_fragment>
+	#include <colorspace_fragment>
 	#include <fog_fragment>
 	#include <premultiplied_alpha_fragment>
 	#include <dithering_fragment>

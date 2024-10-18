@@ -7,14 +7,20 @@ export const loadScene_scene_01 = async function (options = {}) {
     configureSceneData,
     autoPlay,
     createViewer,
-    sceneDataRoot,
-    assetsRoot,
-    libsRootPrefix,
     printWarnings,
     renderer,
     cameraMaskOverride,
   } = options;
   let sceneData = options.sceneData;
+
+  const baseUrl = options.baseUrl != null ? options.baseUrl : "./";
+  const sceneDataRoot =
+    options.sceneDataRoot != null
+      ? options.sceneDataRoot
+      : baseUrl + "/polygonjs/scenes";
+  const assetsRoot = options.assetsRoot != null ? options.assetsRoot : baseUrl;
+  const libsRootPrefix =
+    options.libsRootPrefix != null ? options.libsRootPrefix : baseUrl;
 
   const runRegister = options.runRegister != null ? options.runRegister : true;
   const loadModules = options.loadModules != null ? options.loadModules : true;
@@ -45,7 +51,7 @@ export const loadScene_scene_01 = async function (options = {}) {
   let i = 0;
   for (let moduleName of moduleNames) {
     const moduleNameContainer = moduleName + "Module";
-    Poly.registerModule(loadedModules[i][moduleNameContainer]);
+    Poly.registerModule(loadedModules[i][moduleNameContainer], printWarnings);
     i++;
   }
 

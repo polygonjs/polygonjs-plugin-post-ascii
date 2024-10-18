@@ -189,30 +189,18 @@
 	"persisted_config": {
 		"material": {
 			"metadata": {
-				"version": 4.5,
+				"version": 4.6,
 				"type": "Material",
 				"generator": "Material.toJSON"
 			},
 			"uuid": "/ground/MAT/meshStandardBuilder1-main",
 			"type": "MeshStandardMaterial",
-			"name": "/ground/MAT/meshStandardBuilder1",
 			"color": 16777215,
 			"roughness": 1,
 			"metalness": 0,
 			"emissive": 0,
 			"envMapIntensity": 1,
-			"depthFunc": 3,
-			"depthTest": true,
-			"depthWrite": true,
-			"colorWrite": true,
-			"stencilWrite": false,
-			"stencilWriteMask": 255,
-			"stencilFunc": 519,
-			"stencilRef": 0,
-			"stencilFuncMask": 255,
-			"stencilFail": 7680,
-			"stencilZFail": 7680,
-			"stencilZPass": 7680,
+			"blendColor": 0,
 			"fog": false
 		},
 		"onBeforeCompileDataJSONWithoutShaders": {
@@ -225,7 +213,7 @@
 			"customDepthMaterial": {
 				"material": {
 					"metadata": {
-						"version": 4.5,
+						"version": 4.6,
 						"type": "Material",
 						"generator": "Material.toJSON"
 					},
@@ -233,18 +221,7 @@
 					"type": "MeshDepthMaterial",
 					"name": "customDepthMaterial",
 					"side": 1,
-					"depthFunc": 3,
-					"depthTest": true,
-					"depthWrite": true,
-					"colorWrite": true,
-					"stencilWrite": false,
-					"stencilWriteMask": 255,
-					"stencilFunc": 519,
-					"stencilRef": 0,
-					"stencilFuncMask": 255,
-					"stencilFail": 7680,
-					"stencilZFail": 7680,
-					"stencilZPass": 7680,
+					"blendColor": 0,
 					"depthPacking": 3201
 				},
 				"onBeforeCompileDataJSONWithoutShaders": {
@@ -257,25 +234,14 @@
 			"customDistanceMaterial": {
 				"material": {
 					"metadata": {
-						"version": 4.5,
+						"version": 4.6,
 						"type": "Material",
 						"generator": "Material.toJSON"
 					},
 					"uuid": "/ground/MAT/meshStandardBuilder1-customDistanceMaterial",
 					"type": "MeshDistanceMaterial",
 					"name": "customDistanceMaterial",
-					"depthFunc": 3,
-					"depthTest": true,
-					"depthWrite": true,
-					"colorWrite": true,
-					"stencilWrite": false,
-					"stencilWriteMask": 255,
-					"stencilFunc": 519,
-					"stencilRef": 0,
-					"stencilFuncMask": 255,
-					"stencilFail": 7680,
-					"stencilZFail": 7680,
-					"stencilZPass": 7680
+					"blendColor": 0
 				},
 				"onBeforeCompileDataJSONWithoutShaders": {
 					"paramConfigs": [],
@@ -287,25 +253,14 @@
 			"customDepthDOFMaterial": {
 				"material": {
 					"metadata": {
-						"version": 4.5,
+						"version": 4.6,
 						"type": "Material",
 						"generator": "Material.toJSON"
 					},
 					"uuid": "/ground/MAT/meshStandardBuilder1-customDepthDOFMaterial",
 					"type": "MeshDepthMaterial",
 					"name": "customDepthDOFMaterial",
-					"depthFunc": 3,
-					"depthTest": true,
-					"depthWrite": true,
-					"colorWrite": true,
-					"stencilWrite": false,
-					"stencilWriteMask": 255,
-					"stencilFunc": 519,
-					"stencilRef": 0,
-					"stencilFuncMask": 255,
-					"stencilFail": 7680,
-					"stencilZFail": 7680,
-					"stencilZPass": 7680,
+					"blendColor": 0,
 					"depthPacking": 3200
 				},
 				"onBeforeCompileDataJSONWithoutShaders": {

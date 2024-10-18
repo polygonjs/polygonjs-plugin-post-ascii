@@ -1,10 +1,11 @@
-import { PolyEngine } from "@polygonjs/polygonjs/dist/src/engine/Poly";
-import { PolyScene } from "@polygonjs/polygonjs/dist/src/engine/scene/PolyScene";
+import {PolyEngine} from '@polygonjs/polygonjs/dist/src/engine/Poly';
+import {PolyScene} from '@polygonjs/polygonjs/dist/src/engine/scene/PolyScene';
+import {AsciiPostNode} from '../../../engine/nodes/post/Ascii';
 
 export function configurePolygonjs(poly: PolyEngine) {
 	// we have a `console.log` here to avoid errors like 'poly is declared but not used' at build time
 	if (false) {
-		console.log("poly", poly);
+		console.log('poly', poly);
 	}
 	//
 	//
@@ -17,6 +18,7 @@ export function configurePolygonjs(poly: PolyEngine) {
 	// Plugins are a way to add your own nodes to Polygonjs,
 	// which allow you to extend its capabilities.
 	// See https://github.com/polygonjs/plugins_tutorials
+	poly.nodesRegister.register(AsciiPostNode, 'myNodes');
 	//
 	//
 	//
@@ -35,7 +37,7 @@ export function configurePolygonjs(poly: PolyEngine) {
 export function configureScene(scene: PolyScene) {
 	// we have a `console.log` here to avoid errors like 'scene is declared but not used' at build time
 	if (false) {
-		console.log("scene", scene);
+		console.log('scene', scene);
 	}
 	//
 	//

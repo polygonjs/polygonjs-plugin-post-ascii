@@ -10,13 +10,15 @@ export interface LoadSceneOptions {
   sceneData?: SceneJsonExporterData;
   onProgress?: OnProgressCallback;
   domElement?: HTMLElement | string;
-  moduleImportSuffix?: string;
   loadModules?: boolean;
   runRegister?: boolean;
   configureSceneData?: ConfigureSceneData;
+  //
+  baseUrl?: string;
   sceneDataRoot?: string;
   assetsRoot?: string;
   libsRootPrefix?: string;
+  //
   autoPlay?: boolean;
   createViewer?: boolean;
   printWarnings?: boolean;

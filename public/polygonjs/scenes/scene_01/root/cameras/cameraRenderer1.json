@@ -1,0 +1,15 @@
+{
+	"type": "cameraRenderer",
+	"nodes": {
+		"WebGLRenderer1": {
+			"type": "WebGLRenderer",
+			"params": {
+				"toneMapping": 0
+			}
+		}
+	},
+	"params": {
+		"node": "WebGLRenderer1"
+	},
+	"inputs": ["cameraControls1"]
+}

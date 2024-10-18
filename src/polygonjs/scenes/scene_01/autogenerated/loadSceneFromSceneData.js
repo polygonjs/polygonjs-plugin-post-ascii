@@ -28,6 +28,9 @@ const loadSceneFromSceneData_scene_01 = async function (options) {
     for (const operation of requiredImports_scene_01.operations) {
       Poly.registerOperation(operation, { printWarnings });
     }
+    for (const jsFunction of requiredImports_scene_01.jsFunctions) {
+      Poly.registerNamedFunction(jsFunction, { printWarnings });
+    }
     const polyNodesData = [];
     for (let polyNodeData of polyNodesData) {
       PolyNodeController.createNodeClassAndRegister(polyNodeData);

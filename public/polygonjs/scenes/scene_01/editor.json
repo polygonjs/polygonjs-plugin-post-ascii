@@ -12,19 +12,7 @@
 					"linkIndex": 1,
 					"overlayedNetwork": {
 						"allowed": false,
-						"displayed": false,
-						"initLayoutData": {
-							"camera": {
-								"position": {
-									"x": 0,
-									"y": 0
-								},
-								"zoom": 1
-							},
-							"history": {},
-							"paramsDisplayed": false,
-							"linkIndex": 1
-						}
+						"displayed": false
 					}
 				}
 			},
@@ -44,22 +32,51 @@
 			"panel_data": {
 				"camera": {
 					"position": {
-						"x": 62.54553192632958,
-						"y": 223.1583293886238
+						"x": -28.369568416978026,
+						"y": 37.17391723604017
 					},
 					"zoom": 1.0222221069335933
 				},
-				"history": {},
+				"history": {
+					"2": {
+						"position": {
+							"x": 62.54553192632958,
+							"y": 223.1583293886238
+						},
+						"zoom": 1.0222221069335933
+					},
+					"294": {
+						"position": {
+							"x": -124.23914444676583,
+							"y": -246.63045695905458
+						},
+						"zoom": 1.0222221069335933
+					},
+					"956": {
+						"position": {
+							"x": -28.369568416978026,
+							"y": 37.17391723604017
+						},
+						"zoom": 1.0222221069335933
+					},
+					"1018": {
+						"position": {
+							"x": -46.95652703499811,
+							"y": 13.695653718541116
+						},
+						"zoom": 1.0222221069335933
+					}
+				},
 				"paramsDisplayed": false,
 				"linkIndex": 1
 			}
 		},
 		"split_mode": "horizontal"
 	},
-	"currentNodes": ["/", "/", "/", "/", "/", "/", "/", "/"],
+	"currentNodes": ["/cameras/cameraPostProcess1", "/", "/", "/", "/", "/", "/", "/"],
 	"navigationHistory": {
 		"nodePaths": {
-			"1": ["/"],
+			"1": ["/", "/cameras", "/cameras/cameraPostProcess1"],
 			"2": ["/"],
 			"3": ["/"],
 			"4": ["/"],
@@ -69,7 +86,7 @@
 			"8": ["/"]
 		},
 		"index": {
-			"1": 17,
+			"1": 2,
 			"2": 0,
 			"3": 0,
 			"4": 0,
@@ -81,12 +98,8 @@
 	},
 	"fullscreenPanelId": null,
 	"saveOptions": {
-		"createExport": false,
 		"checkRemoteAssetsUse": true,
-		"minimizeFilesCount": false,
-		"compressJs": true,
-		"createZip": false,
-		"runPostExportCommand": false
+		"minimizeFilesCount": false
 	},
 	"paramsModal": []
 }
