@@ -1,3 +1,6 @@
+//
+// https://github.com/emilwidlund/ASCII/tree/main
+//
 import {CanvasTexture, Color, NearestFilter, RepeatWrapping, Texture, Uniform} from 'three';
 import {Effect} from 'postprocessing';
 
